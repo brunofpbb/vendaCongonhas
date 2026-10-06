@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Recarga Online | Turin Transportes – Congonhas</title>
+  <meta name="description" content="Recarga online do cartão de bilhetagem eletrônica do Turin Transportes.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="site-shell">
+    <div class="utility-bar">
+      <div class="utility-inner">
+        <div class="social-links" aria-label="Redes sociais">
+          <a class="facebook-link" href="https://www.facebook.com/turintransportes" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <svg class="social-icon facebook-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14 8h3V4.5c-.5-.1-1.8-.2-3.4-.2-3.3 0-5.6 2-5.6 5.8V13H4v4h4v7h5v-7h3.7l.6-4H13v-2.5C13 9.3 13.3 8 14 8z"></path>
+            </svg>
+          </a>
+          <a class="instagram-link" href="https://www.instagram.com/turintransportes/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg class="social-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+              <circle cx="12" cy="12" r="4.2"></circle>
+              <circle cx="17.4" cy="6.7" r="1.1" class="instagram-dot"></circle>
+            </svg>
+          </a>
+        </div>
+        <div class="utility-contact">
+          <a class="utility-phone" href="tel:+553137311281" aria-label="Telefone (31) 3731-1281">☎ <span>(31) 3731-1281</span></a>
+          <a class="utility-email" href="mailto:contato@turintransportes.com.br" aria-label="E-mail contato@turintransportes.com.br">✉ <span>contato@turintransportes.com.br</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-header">
+      <div class="main-header-inner">
+        <a class="brand turin-brand" href="https://turintransportes.com/" aria-label="Turin Transportes">
+          <span class="turin-logo-main">TURIN</span>
+          <span class="turin-logo-sub">TRANSPORTES</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a href="https://turintransportes.com/">Início</a>
+          <a href="https://turintransportes.com/quem-somos/">Sobre</a>
+          <a href="https://turintransportes.com/contato/">Dúvidas</a>
+          <a href="https://turintransportes.com/noticias/">Notícias</a>
+          <a href="https://congonhascard.turintransportes.com/">Bilhetagem</a>
+          <a href="https://turintransportes.com/contato/">Contato</a>
+          <a class="nav-outline" href="https://congonhascard.turintransportes.com/">Bilhetagem</a>
+          <a class="nav-solid" href="https://turintransportes.com/horarios-linhas-onibus/">▣ Horários</a>
+        </nav>
+
+        <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+    <div class="brand-stripe"></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><i></i> BILHETAGEM CONGONHAS</span>
+        <h1>Recarga online<br>com <strong>mais facilidade.</strong></h1>
+        <p>Consulte seu cadastro pelo CPF, escolha seu cartão Turin e conclua o pagamento por PIX ou cartão.</p>
+        <div class="hero-pills">
+          <span>✓ Cartões 0362</span>
+          <span>✓ Pagamento seguro</span>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="card-shadow"></div>
+        <div class="travel-card">
+          <div class="chip"></div>
+          <span class="card-small">CONSÓRCIO ROTA REAL</span>
+          <strong>Cartão Cidadão</strong>
+          <span class="card-city">CONGONHAS • MG</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow-card">
+      <div class="steps" aria-label="Etapas da recarga">
+        <div class="step active" data-step="1"><b>1</b><span>CPF</span></div>
+        <div class="line"></div>
+        <div class="step" data-step="2"><b>2</b><span>Cartão</span></div>
+        <div class="line"></div>
+        <div class="step" data-step="3"><b>3</b><span>Valor</span></div>
+        <div class="line"></div>
+        <div class="step" data-step="4"><b>4</b><span>Pagamento</span></div>
+      </div>
+
+      <div id="alert" class="alert" hidden></div>
+
+      <section class="panel active" id="panel-cpf">
+        <span class="kicker">IDENTIFICAÇÃO</span>
+        <h2>Informe seu CPF</h2>
+        <p class="muted">Digite apenas os números.</p>
+        <form id="cpf-form">
+          <label for="cpf">CPF</label>
+          <input id="cpf" name="cpf" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000.000.000-00" required>
+          <button class="btn primary" type="submit">Consultar cartões</button>
+        </form>
+      </section>
+
+      <section class="panel" id="panel-update">
+        <span class="kicker">ATUALIZAÇÃO CADASTRAL</span>
+        <h2>Atualize seus dados para continuar</h2>
+        <p class="muted">Precisamos de um e-mail e telefone válidos para identificar o pagamento e manter seu cadastro atualizado.</p>
+
+        <div class="customer-summary">
+          <strong id="update-name"></strong>
+          <span id="update-cpf"></span>
+        </div>
+
+        <form id="update-form">
+          <label for="update-email">E-mail</label>
+          <input id="update-email" type="email" autocomplete="email" placeholder="voce@email.com" required>
+
+          <label for="update-phone">Telefone com DDD</label>
+          <input id="update-phone" inputmode="tel" autocomplete="tel" maxlength="15" placeholder="(31) 99999-9999" required>
+
+          <button class="btn primary" type="submit">Salvar e continuar</button>
+        </form>
+
+        <button class="btn ghost back-update" type="button">Voltar</button>
+      </section>
+
+      <section class="panel" id="panel-card">
+        <span class="kicker">SEU CARTÃO</span>
+        <h2>Escolha o cartão para recarga</h2>
+        <p class="muted">São exibidos somente cartões habilitados para esta recarga.</p>
+        <div id="cards-list" class="cards-list"></div>
+        <button class="btn ghost back" type="button" data-back="1">Voltar</button>
+      </section>
+
+      <section class="panel" id="panel-value">
+        <span class="kicker">VALOR DA RECARGA</span>
+        <h2>Quanto deseja recarregar?</h2>
+        <div id="selected-card" class="selected-card"></div>
+        <form id="value-form">
+          <label for="amount">Valor</label>
+          <div class="money-input"><span>R$</span><input id="amount" inputmode="decimal" placeholder="0,00" required></div>
+          <label for="email">E-mail para identificação do pagamento</label>
+          <input id="email" type="email" autocomplete="email" placeholder="voce@email.com" required>
+          <label for="phone">Telefone</label>
+          <input id="phone" inputmode="tel" autocomplete="tel" placeholder="(31) 99999-9999">
+          <button class="btn primary" type="submit">Ir para pagamento</button>
+        </form>
+        <button class="btn ghost back" type="button" data-back="2">Voltar</button>
+      </section>
+
+      <section class="panel" id="panel-payment">
+        <span class="kicker">PAGAMENTO SEGURO</span>
+        <h2>Finalize sua recarga</h2>
+        <div id="payment-summary" class="selected-card"></div>
+        <div id="payment-brick"></div>
+        <div class="payment-actions">
+          <button class="btn ghost payment-back" type="button" data-back="3">Voltar</button>
+        </div>
+        <div id="pix-box" hidden>
+          <h3>PIX gerado</h3>
+          <p class="muted">Leia o QR Code ou copie o código abaixo. Esta página confirma o pagamento automaticamente.</p>
+          <img id="pix-qr" alt="QR Code PIX">
+          <div class="copy-row"><input id="pix-code" readonly><button id="copy-pix" class="btn primary" type="button">Copiar</button></div>
+          <p id="pix-status" class="status">Aguardando pagamento…</p>
+        </div>
+      </section>
+
+      <section class="panel success" id="panel-success">
+        <div class="success-icon">✓</div>
+        <span class="kicker">PAGAMENTO CONFIRMADO</span>
+        <h2>Recarga recebida com sucesso.</h2>
+        <p>O pagamento foi confirmado. O processamento da recarga seguirá pelo sistema de bilhetagem.</p>
+        <button class="btn primary" id="new-recharge" type="button">Fazer nova recarga</button>
+      </section>
+    </section>
+
+    <section class="trust">
+      <div><b>PIX ou cartão</b><span>Processado pelo Mercado Pago</span></div>
+      <div><b>Consulta segura</b><span>Integração direta com a bilhetagem</span></div>
+      <div><b>Turin Transportes</b><span>Mobilidade em Congonhas</span></div>
+    </section>
+  </main>
+
+  <footer>@2026 Turin Transportes. Todos os direitos reservados.</footer>
+</body>
+</html>
