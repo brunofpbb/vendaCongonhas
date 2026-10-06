@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <button class="card-option card-option-premium" type="button" data-card-index="${i}">
         <div class="card-option-top">
           <div class="card-identification">
-            <span class="card-label">Cartão Rota Real</span>
+            <span class="card-label">Cartão Turin Transportes</span>
             <strong class="card-number">${escapeHtml(c.cardNumber)}</strong>
             <strong class="card-holder">${escapeHtml(c.name || 'Titular não informado')}</strong>
           </div>
