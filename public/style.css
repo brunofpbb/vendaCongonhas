@@ -775,3 +775,14 @@ footer{
 .utility-bar .utility-contact a{
   color:#fff;
 }
+
+.nav-hours{
+  gap:8px;
+}
+.bus-icon{
+  width:17px;
+  height:17px;
+  display:block;
+  flex:0 0 17px;
+  fill:#fff;
+}
