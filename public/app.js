@@ -130,26 +130,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderCards(){
     $('#cards-list').innerHTML = state.cards.map((c,i) => `
-      <button class="card-option card-option-premium" type="button" data-card-index="${i}">
-        <div class="card-option-top">
-          <div class="card-identification">
-            <span class="card-label">Cartão Turin Transportes</span>
-            <strong class="card-number">${escapeHtml(c.cardNumber)}</strong>
-            <strong class="card-holder">${escapeHtml(c.name || 'Titular não informado')}</strong>
+      <button class="card-option-step2 selected-card" type="button" data-card-index="${i}">
+        <div class="selected-card-head step2-card-head">
+          <div>
+            <b>Cartão ${escapeHtml(c.cardNumber)}</b>
+            <span>${escapeHtml(c.name || 'Titular não informado')}</span>
           </div>
           <span class="select-pill">Recarregar →</span>
         </div>
-
-        <div class="card-option-bottom">
-          <div class="balance-box">
-            <span>Saldo aproximado</span>
-            <strong>${c.balance == null ? 'Não informado' : brl(c.balance)}</strong>
-          </div>
-          <div class="balance-update">
-            <span>Atualizado em</span>
-            <strong>${escapeHtml(formatBalanceDate(c.balanceDate))}</strong>
-          </div>
+        <div class="balance-highlight">
+          <span>Saldo aproximado do cartão</span>
+          <strong>${c.balance == null ? 'Não informado' : brl(c.balance)}</strong>
+          <small>Saldo atualizado em: ${escapeHtml(formatBalanceDate(c.balanceDate))}</small>
         </div>
+        <p class="balance-note">O saldo refere-se às cargas já transferidas para o cartão. Pagamentos recentes podem ainda não aparecer e o saldo será atualizado quando o cartão for utilizado no veículo.</p>
       </button>`).join('');
   }
 

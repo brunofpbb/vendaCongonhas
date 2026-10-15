@@ -986,3 +986,45 @@ body.notice-open{overflow:hidden}
   .notice-actions{flex-direction:column-reverse}
   .notice-actions .btn{width:100%}
 }
+
+
+/* ===== Passo 2 no mesmo padrão visual do cartão selecionado no passo 3 ===== */
+.card-option-step2{
+  width:100%;
+  display:block;
+  text-align:left;
+  border:1px solid #cfddf1;
+  background:var(--blue-soft);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:0;
+  cursor:pointer;
+  font:inherit;
+  color:inherit;
+  transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.card-option-step2:hover,
+.card-option-step2:focus-visible{
+  border-color:var(--blue);
+  box-shadow:0 8px 22px rgba(11,108,89,.10);
+  transform:translateY(-1px);
+  outline:none;
+}
+.step2-card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+}
+.step2-card-head>div{min-width:0}
+.card-option-step2 .balance-highlight{margin-top:14px}
+.card-option-step2 .balance-note{margin-bottom:0}
+@media(max-width:600px){
+  .step2-card-head{
+    align-items:flex-start;
+  }
+  .step2-card-head .select-pill{
+    flex:0 0 auto;
+    margin-left:8px;
+  }
+}
