@@ -265,6 +265,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  function openRechargeNotice(){
+    const notice = $('#recharge-notice');
+    const consent = $('#notice-consent');
+    const continueBtn = $('#notice-continue');
+    consent.checked = false;
+    continueBtn.disabled = true;
+    notice.hidden = false;
+    document.body.classList.add('notice-open');
+    requestAnimationFrame(() => consent.focus());
+  }
+
+  function closeRechargeNotice(){
+    $('#recharge-notice').hidden = true;
+    document.body.classList.remove('notice-open');
+  }
+
   $('#cards-list').addEventListener('click', e => {
     const btn = e.target.closest('[data-card-index]'); if(!btn) return;
     state.card = state.cards[Number(btn.dataset.cardIndex)];
@@ -284,7 +300,23 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     $('#email').value = state.email || state.card.email || '';
     $('#phone').value = state.phone || state.card.phone || '';
+    openRechargeNotice();
+  });
+
+  $('#notice-consent').addEventListener('change', e => {
+    $('#notice-continue').disabled = !e.target.checked;
+  });
+
+  $('#notice-continue').addEventListener('click', () => {
+    if(!$('#notice-consent').checked) return;
+    closeRechargeNotice();
     go(3);
+  });
+
+  $('#notice-cancel').addEventListener('click', closeRechargeNotice);
+  $('[data-notice-close]').forEach(el => el.addEventListener('click', closeRechargeNotice));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && !$('#recharge-notice').hidden) closeRechargeNotice();
   });
 
   $$('[data-back]').forEach(b => b.addEventListener('click', () => history.back()));
