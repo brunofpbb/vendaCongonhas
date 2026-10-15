@@ -1028,3 +1028,13 @@ body.notice-open{overflow:hidden}
     margin-left:8px;
   }
 }
+
+
+/* Centraliza corretamente o texto do botão Recarregar no passo 2 */
+.card-option-step2 .select-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1;
+}

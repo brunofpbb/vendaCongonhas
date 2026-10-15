@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   $('#notice-cancel').addEventListener('click', closeRechargeNotice);
-  $('[data-notice-close]').forEach(el => el.addEventListener('click', closeRechargeNotice));
+  document.querySelectorAll('[data-notice-close]').forEach(el => el.addEventListener('click', closeRechargeNotice));
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape' && !$('#recharge-notice').hidden) closeRechargeNotice();
   });
